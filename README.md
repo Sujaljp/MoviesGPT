@@ -18,5 +18,4 @@
       - MovieList ( 1* N and horizontal)
 - MoviesGPT
   - Search bar
-  - Input bar
-"# MoviesGPT" 
+  - Movie suggestions
