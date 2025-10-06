@@ -1,7 +1,19 @@
 # MovesGPT
 
-- Used Vite to create app
+- Created react app with VITE bundler
 - Configured tailwind CSS
+- Header with gradient
+- Routing of App
+- Login Form / Sign Up form
+- Form validation
+- useRef Hook for inputs
+- Setup firebase
+- Deployed app to firebase
+- Sign up and sign in logic implemented with firebase
+- Redux store setup -> store created and passed to the provider
+- userSlice created for storing the user from AUTH page
+- Implement sign out logic 
+- Update user profile
 
 ## Features
 

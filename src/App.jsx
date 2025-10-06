@@ -1,15 +1,16 @@
-import './App.css'
+import { Provider } from "react-redux";
+import "./App.css";
+import Body from "./components/Body";
+import appStore from "./utils/store/store";
 
 function App() {
-
   return (
     <>
-      <div className=''>
-      </div>
-      <h1>Vite + React</h1>
-      
+      <Provider store={appStore}>
+          <Body />
+      </Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
