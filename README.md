@@ -21,6 +21,9 @@
 - Using store to handle movies list and trailer
 - Browse page design
 - Embedded YouTube video
+- Secondary Container created
+- Movie card and movie list created
+- TMDB API for fetching different movie lists
 
 ## Features
 
