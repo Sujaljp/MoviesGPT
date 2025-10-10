@@ -20,7 +20,6 @@ const Header = () => {
     // the Auth Object and is called whenerver the auth object change
     // given by firebase sdk
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("onAuthStateChanged is called", user);
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
@@ -34,6 +33,7 @@ const Header = () => {
     return () => {
       unsubscribe();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = () => {

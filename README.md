@@ -12,8 +12,15 @@
 - Sign up and sign in logic implemented with firebase
 - Redux store setup -> store created and passed to the provider
 - userSlice created for storing the user from AUTH page
-- Implement sign out logic 
+- Implement sign out logic
 - Update user profile
+- Protected routes with `onAuthStateChanged`
+- Handled hard coded values in constants
+- TMDB API creation and integration
+- Custom hooks for fetching movies list and main movie trailers
+- Using store to handle movies list and trailer
+- Browse page design
+- Embedded YouTube video
 
 ## Features
 

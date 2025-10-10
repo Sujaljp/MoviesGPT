@@ -10,6 +10,7 @@ import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../utils/store/userSlice";
+import { BANNER, DEFAULT_PROFILE_PICTURE } from "../../utils/constants";
 
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -64,7 +65,6 @@ const Auth = () => {
         });
     } else {
       // sign up logic comes here
-      console.log("Creating user");
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -75,7 +75,7 @@ const Auth = () => {
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/81800911?v=4",
+            photoURL: DEFAULT_PROFILE_PICTURE,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -100,7 +100,7 @@ const Auth = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/d482944d-eab4-4a64-89c9-a07a508a6e42/web/IN-en-20250929-TRIFECTA-perspective_4cf0c8a1-bd35-4d72-a49f-165021531dde_large.jpg"
+          src={BANNER}
           alt="logo"
         />
       </div>
