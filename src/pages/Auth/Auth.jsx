@@ -24,13 +24,15 @@ const Auth = () => {
   const signInForm = {
     header: "Sign In",
     buttonText: "Sign In",
-    alternativeText: "New user? Register now.",
+    alternativeText: "New user? ",
+    linkText: "Register now."
   };
 
   const signUpForm = {
     header: "Sign Up",
     buttonText: "Register",
-    alternativeText: "Already registered? Sign In now.",
+    alternativeText: "Already registered? ",
+    linkText: "Sign In now."
   };
 
   const formText = isSignIn ? signInForm : signUpForm;
@@ -56,7 +58,7 @@ const Auth = () => {
           // Signed in
           const user = userCredential.user;
           user.displayName;
-          navigate("/browse");
+          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -80,7 +82,7 @@ const Auth = () => {
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName, photoURL }));
-              navigate("/browse");
+              navigate("/auth");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -100,6 +102,7 @@ const Auth = () => {
       <Header />
       <div className="absolute">
         <img
+          className="w-screen h-screen object-cover"
           src={BANNER}
           alt="logo"
         />
@@ -107,9 +110,9 @@ const Auth = () => {
 
       <form
         onSubmit={(e) => handleFormSubmit(e)}
-        className="w-3/12 absolute p-12 left-0 right-0  bg-black/80 mx-auto my-32 text-white rounded-lg"
+        className=" w-[80vw] sm:w-[60vw] lg:w-4/12 xl:w-3/12 absolute p-6 md:p-12 left-0 right-0  bg-black/80 mx-auto my-32 text-white rounded-lg"
       >
-        <h2 className="font-bold text-3xl py-4">{formText.header}</h2>
+        <h2 className="font-bold text-3xl py-4 text-center">{formText.header}</h2>
         {!isSignIn && (
           <input
             className="w-full my-4 mx-auto p-2  bg-neutral-900 border border-gray-500 rounded-sm"
@@ -139,7 +142,7 @@ const Auth = () => {
           onClick={() => setIsSignIn((prev) => !prev)}
           className="my-4 cursor-pointer"
         >
-          {formText.alternativeText}
+          {formText.alternativeText}  <span className="text-red-500 underline">{formText.linkText}</span>
         </p>
       </form>
     </div>

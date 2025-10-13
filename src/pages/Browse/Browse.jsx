@@ -1,11 +1,11 @@
 import React from 'react'
 import Header from '../../components/Header'
-import useNowPlayingMovies from '../../hooks/useNowPlayingMovies'
+import useMoviesPlaylist from '../../hooks/useNowPlayingMovies'
 import MainContainer from './components/MainContainer'
 import SecondaryContainer from './components/SecondaryContainer'
 
 const Browse = () => {
-    useNowPlayingMovies()
+    useMoviesPlaylist()
   return (
     <div className='scrollbar-hide bg-black'>
         <Header/>

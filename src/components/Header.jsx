@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import logo from "../assets/logo.png";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/constants";
+import { changeLanguage } from "../utils/store/configSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
-
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,17 +25,19 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
-        navigate("/browse");
+        if (location.pathname == "/auth") navigate("/browse");
       } else {
         dispatch(removeUser());
-        navigate("/");
+        if (location.pathname !== "/auth") {
+          navigate("/auth");
+        }
       }
     });
 
     return () => {
       unsubscribe();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = () => {
@@ -43,11 +47,41 @@ const Header = () => {
         console.log(error);
       });
   };
+
+  const handleLanguageSelect = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
   return (
-    <div className="z-10 w-full absolute px-8 py-2 flex justify-between bg-gradient-to-b from-black">
-      <img className="w-44" src={logo} alt="MoviesGPT-logo" />
+    <div className="z-10 w-full absolute px-8 py-2 flex flex-col items-center sm:flex-row justify-between  bg-gradient-to-b from-black">
+      <Link to={"/"}>
+        <img className="w-44" src={logo} alt="MoviesGPT-logo" />
+      </Link>
       {user && (
-        <div className="flex p-2 items-center gap-2">
+        <div className="flex p-2 items-center gap-3">
+          {location.pathname === "/search" && (
+            <select
+              onChange={(e) => handleLanguageSelect(e)}
+              className="bg-white/30 text-white px-2 py-3 rounded-lg"
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option
+                  key={lang.identifier}
+                  className="text-black bg-white/30"
+                  value={lang.identifier}
+                >
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          {location.pathname != "/search" && (
+            <button
+              onClick={() => navigate("/search")}
+              className="cursor-pointer p-2 sm:px-4 sm:py-3 text-white font-medium bg-violet-700/60 rounded-lg"
+            >
+              GPT search
+            </button>
+          )}
           <img className="w-12" src={user.photoURL} alt="profile-pic" />
           <button
             onClick={handleSubmit}

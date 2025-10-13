@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBADEHPfDIqd_Fm0s6OufwNi2F7kj97uhs",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "moviesgpt-71312.firebaseapp.com",
   projectId: "moviesgpt-71312",
   storageBucket: "moviesgpt-71312.firebasestorage.app",
@@ -21,5 +21,3 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth()
-
-

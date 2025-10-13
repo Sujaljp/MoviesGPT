@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TMDB_OPTIONS } from "../utils/constants";
 import { useEffect } from "react";
 import { addMainMovie } from "../utils/store/moviesSlice";
 
 const useMainMovieVideo = (id) => {
   const dispatch = useDispatch();
+  const mainMovie = useSelector((store) => store.movies.mainMovie);
   const getMovieVideo = async () => {
     const url =
       "https://api.themoviedb.org/3/movie/" + id + "/videos?language=en-US";
@@ -18,7 +19,9 @@ const useMainMovieVideo = (id) => {
   };
 
   useEffect(() => {
-    getMovieVideo();
+    if (!mainMovie) {
+      getMovieVideo();
+    }
   }, []);
 };
 

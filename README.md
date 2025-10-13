@@ -24,6 +24,15 @@
 - Secondary Container created
 - Movie card and movie list created
 - TMDB API for fetching different movie lists
+- Custom hooks
+- GPT page (search bar and movie suggestions)
+- Multi-lingual support
+- GPT chat API call
+- Fetched suggested movie
+- Reused MovieList component
+- MEMOIZATION
+- Added `.env` file
+- Made our site responsive
 
 ## Features
 
