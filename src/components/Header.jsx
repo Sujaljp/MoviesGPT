@@ -11,6 +11,7 @@ import { addUser, removeUser } from "../utils/store/userSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/store/configSlice";
 import menu from "/hamburger_menu.svg"
+import close from "/close.svg"
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -54,7 +55,7 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="z-10 w-full h-16 absolute px-8 py-2 flex  items-center justify-between  bg-gradient-to-b from-black">
+    <div className="z-10 w-full h-20 absolute px-8 py-2 flex  items-center justify-between  bg-gradient-to-b from-black">
       <Link to={"/"}>
         <img className="w-44" src={logo} alt="MoviesGPT-logo" />
       </Link>
@@ -98,11 +99,14 @@ const Header = () => {
       </>}
       
       {isMenuVisible && (
-        <div className="sm:hidden absolute -z-10 w-full bg-black/90 top-0 left-0 flex flex-col  p-4 pt-20   items-center justify-end  gap-3">
+        <div className="sm:hidden absolute  w-full h-44 bg-red-500/90 top-0 left-0 flex flex-col  p-2 text-lg   items-center justify-end  gap-3">
+          <div onClick={()=>setIsMenuVisible(prev=> !prev)} className="">
+            <img src={close} alt="" />
+          </div>
           {location.pathname === "/search" && (
             <select
               onChange={(e) => handleLanguageSelect(e)}
-              className="bg-white/30 text-white  w-full p-2 rounded-lg"
+              className="bg-white/30 text-white  w-11/12 p-2  rounded-lg"
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
                 <option
