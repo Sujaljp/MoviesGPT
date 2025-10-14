@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
@@ -10,12 +10,14 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/store/configSlice";
+import menu from "/hamburger_menu.svg"
 
 const Header = () => {
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   useEffect(() => {
     // onAuthStateChanged is a observer (like a event listener) set on
@@ -25,7 +27,7 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
-        if (location.pathname == "/auth") navigate("/browse");
+        if (location.pathname == "/auth") navigate("/");
       } else {
         dispatch(removeUser());
         if (location.pathname !== "/auth") {
@@ -52,12 +54,12 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="z-10 w-full absolute px-8 py-2 flex flex-col items-center sm:flex-row justify-between  bg-gradient-to-b from-black">
+    <div className="z-10 w-full h-16 absolute px-8 py-2 flex  items-center justify-between  bg-gradient-to-b from-black">
       <Link to={"/"}>
         <img className="w-44" src={logo} alt="MoviesGPT-logo" />
       </Link>
-      {user && (
-        <div className="flex p-2 items-center gap-3">
+      {user && <>
+        <div className="hidden sm:flex p-2 items-center gap-3">
           {location.pathname === "/search" && (
             <select
               onChange={(e) => handleLanguageSelect(e)}
@@ -88,6 +90,44 @@ const Header = () => {
             className="font-bold text-white cursor-pointer"
           >
             (Sign out)
+          </button>
+        </div>
+        <div className="block sm:hidden cursor-pointer text-white text-5xl" onClick={()=>setIsMenuVisible(prev=> !prev)}>
+        <img className="w-10" src={menu} alt="" />
+      </div>
+      </>}
+      
+      {isMenuVisible && (
+        <div className="sm:hidden absolute -z-10 w-full bg-black/90 top-0 left-0 flex flex-col  p-4 pt-20   items-center justify-end  gap-3">
+          {location.pathname === "/search" && (
+            <select
+              onChange={(e) => handleLanguageSelect(e)}
+              className="bg-white/30 text-white  w-full p-2 rounded-lg"
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option
+                  key={lang.identifier}
+                  className="text-black bg-white/30"
+                  value={lang.identifier}
+                >
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          {location.pathname != "/search" && (
+            <button
+              onClick={() => navigate("/search")}
+              className="cursor-pointer w-full p-2 text-white font-medium "
+            >
+              GPT search
+            </button>
+          )}
+          <button
+            onClick={handleSubmit}
+            className="font-bold text-white w-full p-2 cursor-pointer"
+          >
+            Sign out
           </button>
         </div>
       )}

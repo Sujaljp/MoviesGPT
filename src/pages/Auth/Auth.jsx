@@ -82,7 +82,7 @@ const Auth = () => {
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName, photoURL }));
-              navigate("/auth");
+              navigate("/");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -102,7 +102,7 @@ const Auth = () => {
       <Header />
       <div className="absolute">
         <img
-          className="w-screen h-screen object-cover"
+          className="w-screen min-h-[100vh] object-cover"
           src={BANNER}
           alt="logo"
         />
@@ -110,7 +110,7 @@ const Auth = () => {
 
       <form
         onSubmit={(e) => handleFormSubmit(e)}
-        className=" w-[80vw] sm:w-[60vw] lg:w-4/12 xl:w-3/12 absolute p-6 md:p-12 left-0 right-0  bg-black/80 mx-auto my-32 text-white rounded-lg"
+        className=" w-[80vw] sm:w-[60vw] lg:w-4/12 xl:w-3/12 absolute p-6 md:p-12 left-0 right-0  bg-black/80 mx-auto my-28 text-white rounded-lg"
       >
         <h2 className="font-bold text-3xl py-4 text-center">{formText.header}</h2>
         {!isSignIn && (

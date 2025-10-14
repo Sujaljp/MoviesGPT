@@ -4,7 +4,7 @@ import info from "/info.svg";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="absolute w-full h-[50vh] md:w-full md:h-auto md:aspect-video pt-[34vh] sm:pt-[25vh] lg:pt-[30vh] xl:pt-[35vh] px-6 md:px-12 text-white bg-gradient-to-r from-black/80">
+    <div className="absolute w-full h-[50vh] md:w-full md:h-auto md:aspect-video pt-[25vh]  lg:pt-[30vh] xl:pt-[35vh] px-6 md:px-12 text-white bg-gradient-to-r from-black/80">
       <h1 className="w-full text-3xl md:w-1/2 sm:text-5xl font-bold">{title}</h1>
       <p className="hidden md:inline-block py-6 w-full lg:w-2/3 xl:w-1/3 text-lg">{overview}</p>
       <div className="mt-4 md:mt-0 flex gap-2">
