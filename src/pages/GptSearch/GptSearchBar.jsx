@@ -19,7 +19,8 @@ const GptSearchBar = () => {
 
     const data = await fetch(url, TMDB_OPTIONS);
     const json = await data.json();
-    return { name: movie, list: json.results.slice(0, 4) };
+    // return { name: movie, list: json.results.slice(0, 4) };
+    return { name: movie, list: json.results };
   };
 
   const handleSearch = async () => {

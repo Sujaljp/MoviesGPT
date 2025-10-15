@@ -15,7 +15,7 @@ const GptMovieSuggestions = () => {
 
   if(!moviesData) return null
   return (
-    <div className='p-4 px-6 md:px-12 m-4 bg-black/90 text-white h-[65vh]  overflow-y-scroll scrollbar-hide'>
+    <div className='p-6 md:pb-8 px-6 md:px-12 m-4 bg-black/90 text-white h-[65vh]  overflow-y-scroll scrollbar-hide'>
       {moviesData.map((movies)=> <MovieList key={movies.name} title={movies.name} movies={movies.list} onCardClick={handleCardClick}/>)}
 
       {selectedMovie && (

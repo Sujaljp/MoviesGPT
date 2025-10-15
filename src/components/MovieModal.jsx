@@ -37,7 +37,7 @@ const MovieModal = ({ movie, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute block top-3 right-4 text-white text-2xl"
+          className="absolute top-3 right-4 text-white text-2xl cursor-pointer"
         >
           ✖
         </button>
@@ -47,6 +47,7 @@ const MovieModal = ({ movie, onClose }) => {
             src={`https://www.youtube.com/embed/${video?.key}?autoplay=1`}
             title={movie.title}
             allow="autoplay; encrypted-media"
+            allowFullScreen
           ></iframe>
         </div>
         <div className=" p-4 pl-8  w-full text-white ">

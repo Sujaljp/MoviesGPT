@@ -62,6 +62,8 @@ const WatchPage = () => {
           className="w-full h-full"
           src={`https://www.youtube.com/embed/${video?.key}?autoplay=1`}
           allow="autoplay; encrypted-media"
+            allowFullScreen
+
         ></iframe>
       </div>
       {showMoreDetails && (
