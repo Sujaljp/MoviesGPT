@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import useMainMovieVideo from "../../../hooks/useMainMovieVideo";
 
 const VideoBackground = ({ id}) => {
+
   const mainMovie = useSelector((store) => store.movies.mainMovie);
   const videoId = mainMovie?.key
 

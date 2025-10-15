@@ -12,7 +12,7 @@ const useMainMovieVideo = (id) => {
     const data = await fetch(url, TMDB_OPTIONS);
     const result = await data.json();
     const filterData = result.results.filter((video) => {
-      return video.type === "Trailer" && video.name == "Official Trailer";
+      return video.type === "Trailer" ;
     });
     const trailer = filterData.length == 0 ? result.results[0] : filterData[0];
     dispatch(addMainMovie(trailer));
