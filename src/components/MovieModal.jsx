@@ -37,7 +37,7 @@ const MovieModal = ({ movie, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-white text-2xl"
+          className="absolute block top-3 right-4 text-white text-2xl"
         >
           ✖
         </button>

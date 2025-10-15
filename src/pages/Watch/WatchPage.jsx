@@ -75,7 +75,7 @@ const WatchPage = () => {
             </button>
             <div className="flex gap-4 md:gap-8 mt-4">
               <img
-                className="w-54 hidden sm:inline-block"
+                className="w-54 object-cover hidden sm:inline-block"
                 src={IMAGE_CDN_URL + movie.poster_path}
                 alt="movie_poster"
               />

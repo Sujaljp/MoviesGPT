@@ -15,7 +15,7 @@ const SecondaryContainer = () => {
   if(!movies.upcomingMovies) return
 
   return (
-    <div className="px-6 md:px-12 mt-0 lg:-mt-[17vh] xl:-mt-[27vh] z-20 relative ">
+    <div className="px-6 md:px-12 pb-6 mt-0 lg:-mt-[17vh] xl:-mt-[27vh] z-20 relative ">
       <MovieList  title={"Top rated"} movies={movies.topRatedMovies} onCardClick={handleCardClick} />
       <MovieList  title={"Now playing"} movies={movies.nowPlayingMovies} onCardClick={handleCardClick}/>
       <MovieList  title={"Popular"} movies={movies.popularMovies} onCardClick={handleCardClick}/>
